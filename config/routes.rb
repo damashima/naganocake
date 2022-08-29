@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :items
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show, :update]
   end
 
   devise_for :customers,skip: [:passwords], controllers: {
