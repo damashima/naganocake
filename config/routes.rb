@@ -2,6 +2,13 @@ Rails.application.routes.draw do
 
   root 'public/homes#top'
   get 'about' => 'public/homes#about'
+  resources :items, only: [:index, :show]
+  resources :customers, only: [:show, :edit, :update]
+  get 'customers/my_page' => 'public/customers#show'
+  get 'customers/infomation/edit' => 'public/customers#edit'
+  patch 'customers/infomation' => 'public/customers#update'
+  get 'customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
+  patch 'customers/withdrawal' => 'public/customers#withdrawal', as: 'withdrawal'
 
   namespace :public do
   end
