@@ -1,2 +1,9 @@
-<h3><strong>商品一覧</strong></h3>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<h3><strong>商品一覧</strong>(全<%= @items.count %>)件</h3>
+
+  <% @items.each do |item| %>
+    <%= link_to item_path(item.id) do %>
+    <%= image_tag item.image, size: "200x150" %>
+    <%= item.name %>
+    ¥<%= item.price %>
+    <% end %>
+  <% end %>

@@ -5,6 +5,6 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def active_for_authentication?
-    super && (is_deleted == true)
+    super && (is_deleted == false)
   end
 end

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'public/homes#top'
   get 'about' => 'public/homes#about'
-  resources :items, only: [:index, :show]
+  get 'items' => 'public/items#index'
   resources :customers, only: [:show, :edit, :update]
   get 'customers/my_page' => 'public/customers#show'
   get 'customers/infomation/edit' => 'public/customers#edit'
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
   end
 
-  devise_for :customers,skip: [:passwords], controllers: {
+  devise_for :customer,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
