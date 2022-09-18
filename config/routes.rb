@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root 'public/homes#top'
   get 'about' => 'public/homes#about'
   get 'items' => 'public/items#index'
-  resources :customers, only: [:show, :edit, :update]
   get 'customers/my_page' => 'public/customers#show'
   get 'customers/infomation/edit' => 'public/customers#edit'
   patch 'customers/infomation' => 'public/customers#update'

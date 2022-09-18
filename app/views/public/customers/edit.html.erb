@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col text-left">
-      <h3>会員情報</h3>
-      <%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
-      <table class="table">
+    <div class="col-7 text-left">
+      <h4>会員情報</h4>
+      <%= form_with model: @customer, url: customers_infomation_edit_path(@customer.id), method: :patch do |f| %>
+      <table class="table table-borderless">
         <tbody>
           <tr>
             <td>氏名</td>
@@ -33,10 +33,8 @@
       </table>
 
       <%= f.submit '編集内容を保存', class: "btn btn-success" %>
-
-      <% end %>
-
       <%= link_to "退会する", unsubscribe_path, class: "btn btn-danger" %>
+      <% end %>
     </div>
   </div>
 </div>
