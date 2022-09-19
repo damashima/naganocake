@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
 
+  get 'orders/new'
+  get 'orders/confirm'
+  get 'orders/complete' => 'public/orders#complete'
+  get 'orders/index'
+  get 'orders/show'
+
   root 'public/homes#top'
   get 'about' => 'public/homes#about'
   get 'items' => 'public/items#index'
+  get 'items/:id', to: 'public/items#show', as: 'item'
+  get 'cart_items' => 'public/cart_items#index'
   get 'customers/my_page' => 'public/customers#show'
   get 'customers/infomation/edit' => 'public/customers#edit'
   patch 'customers/infomation' => 'public/customers#update'
