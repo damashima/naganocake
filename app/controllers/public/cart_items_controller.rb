@@ -1,10 +1,10 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @items = Item.all
+    @cart_items = current_customer.cart_items
   end
 
   private
-  def cart_items_params
+  def cart_item_params
     params.require(:cart_item).permit(:item_id, :amount)
   end
 end

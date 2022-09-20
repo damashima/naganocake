@@ -6,8 +6,13 @@
     <div class="col-6">
       <h4><strong><%= @item.name %></strong></h4>
       <h5><%= @item.introduction %></h5><br>
-      <h5><strong>¥ <%= (@item.price * 1.1).floor %></strong>(税込)</h5>
-
+      <br>
+      <h5><strong>¥ <%= @item.with_tax_price %></strong>(税込)</h5><br>
+      <%= form_with model: @item do |f| %>
+      <%= f.select :amount, *[1..10], {:prompt => "個数選択"} %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
+      <%= f.submit "カートに入れる", class: "btn btn-success" %>
+      <% end %>
     </div>
   </div>
 </div>
