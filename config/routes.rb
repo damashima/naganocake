@@ -1,16 +1,14 @@
 Rails.application.routes.draw do
 
-  get 'orders/new'
-  get 'orders/confirm'
-  get 'orders/complete' => 'public/orders#complete'
-  get 'orders/index'
-  get 'orders/show'
-
   root 'public/homes#top'
   get 'about' => 'public/homes#about'
+
   get 'items' => 'public/items#index'
   get 'items/:id', to: 'public/items#show', as: 'item'
-  resources :cart_items,only: [:index, :update, :destroy, :create]
+
+  post 'orders/confirm' => 'public/orders#confirm'
+  get 'orders/complete' => 'public/orders#complete'
+
   delete 'cart_items/destroy_all' => 'public/cart_items#destroy_all'
 
   get 'customers/my_page' => 'public/customers#show'
@@ -18,6 +16,11 @@ Rails.application.routes.draw do
   patch 'customers/infomation' => 'public/customers#update'
   get 'customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
   patch 'customers/withdrawal' => 'public/customers#withdrawal', as: 'withdrawal'
+
+  scope module: 'public' do
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    resources :orders, only: [:new, :create, :index, :show]
+  end
 
   namespace :public do
   end
