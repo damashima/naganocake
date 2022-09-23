@@ -3,6 +3,8 @@ before_action :authenticate_customer!
 
   def index
     @cart_items = current_customer.cart_items.all
+    @total = 0
+    #@#total = @cart_items.inject(0) { |sum, |item|, |sum + item.sum_of_price }
   end
 
   def create
@@ -21,9 +23,22 @@ before_action :authenticate_customer!
     end
   end
 
-  def destroy
+  def update
     @cart_item = CartItem.find(params[:id])
-    @cart_item.destroy
+    @cart_item.update(cart_item_params)
+    redirect_to cart_items_path
+  end
+
+  def destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    @cart_items = CartItem.all
+    render 'index'
+  end
+
+  def all_destroy
+    cart_items = CartItem.all
+    cart_items.destroy_all
     redirect_to cart_items_path
   end
 

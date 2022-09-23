@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post 'orders/confirm' => 'public/orders#confirm'
   get 'orders/complete' => 'public/orders#complete'
 
-  delete 'cart_items/destroy_all' => 'public/cart_items#destroy_all'
+  delete 'cart_items/destroy_all' => 'public/cart_items#all_destroy', as: 'all_destroy'
 
   get 'customers/my_page' => 'public/customers#show'
   get 'customers/infomation/edit' => 'public/customers#edit'
