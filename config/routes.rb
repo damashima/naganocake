@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   delete 'cart_items/destroy_all' => 'public/cart_items#all_destroy', as: 'all_destroy'
 
   get 'customers/my_page' => 'public/customers#show'
-  get 'customers/infomation/edit' => 'public/customers#edit'
-  patch 'customers/infomation' => 'public/customers#update'
+  get 'customers/information/edit' => 'public/customers#edit'
+  patch 'customers/information/edit' => 'public/customers#update'
   get 'customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
   patch 'customers/withdrawal' => 'public/customers#withdrawal', as: 'withdrawal'
 

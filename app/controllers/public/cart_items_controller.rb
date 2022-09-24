@@ -39,7 +39,7 @@ before_action :authenticate_customer!
   def all_destroy
     cart_items = CartItem.all
     cart_items.destroy_all
-    redirect_to cart_items_path
+    redirect_to cart_items_path   #render 'index'にするとエラー
   end
 
   private
