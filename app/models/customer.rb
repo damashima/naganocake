@@ -6,6 +6,8 @@ class Customer < ApplicationRecord
 
          has_many :cart_items, dependent: :destroy
          #↑これ書いたらカート画面に飛んだ
+         has_many :orders, dependent: :destroy
+         has_many :addresses, dependent: :destroy
 
   def active_for_authentication?
     super && (is_deleted == false)
