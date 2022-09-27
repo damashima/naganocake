@@ -4,7 +4,14 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def create
+    @order = Order.new(order_params)
+    @order.save
+  end
+
   def confirm
+    @total = 0
+    #@#total = @cart_items.inject(0) { |sum, |item|, |sum + item.sum_of_price }
     @order = Order.new(order_params)
     @order.postal_code = current_customer.postal_code
     @order.address = current_customer.address

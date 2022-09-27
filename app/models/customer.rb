@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :cart_items, dependent: :destroy
-         #↑これ書いたらカート画面に飛んだ
+         #↑記述後カート画面エラー解消
          has_many :orders, dependent: :destroy
          has_many :addresses, dependent: :destroy
 
