@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   scope module: 'public' do
     resources :cart_items, only: [:index, :update, :destroy, :create]
     resources :orders, only: [:new, :create, :index, :show]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 
   namespace :public do
