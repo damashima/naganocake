@@ -12,8 +12,8 @@
           </tr>
         </thead>
         <tbody>
-        <% total = 0 %>
-        <% @cart_items.each do |cart_item| %>
+          <% total = 0 %>
+          <% @cart_items.each do |cart_item| %>
           <tr>
             <td><%= cart_item.item.name %></td>
             <td><%= cart_item.item.with_tax_price %></td>
@@ -21,8 +21,8 @@
             <td><%= cart_item.subtotal %></td>
           </tr>
         </tbody>
-        <% @total +=  cart_item.subtotal %>
-        <% end %>
+          <% @total +=  cart_item.subtotal %>
+          <% end %>
       </table>
     </div>
 

@@ -31,10 +31,17 @@
         </tr>
       </tbody>
     </table>
-    <div class="col-4">
-    <p><strong>配送先</strong> <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %></p>
-
-    <p><strong>注文履歴</strong></p>
     </div>
-  </div>
+    <div class="col-8">
+      <table class="table table-borderless">
+        <tr>
+          <th>配送先</th>
+          <td><%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %></td>
+        </tr>
+        <tr>
+          <th>注文履歴</th>
+          <td><%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %></td>
+        </tr>
+      </table>
+    </div>
 </div>
