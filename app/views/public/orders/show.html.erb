@@ -1,26 +1,48 @@
-<div class="row">
+<div class="container">
   <h4>注文履歴詳細</h4>
-  <div class="col-7">
-    <h5><strong>注文情報</strong></h5>
-    <table class="table table-bordered">
-      <tbody>
-        <tr>
-          <th>注文日</th>
-          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-        </tr>
-        <tr>
-          <th>配送先</th><br>
-          <td>〒<%= @order.postal_code %><br>
-              <%= @order.address %><br>
-              <%= @order.name %>
-          </td>
-        </tr>
-        <tr>
-          <th>支払方法</th>
-          <td><%= @order.payment_method_i18n %></td>
-        </tr>
-      </tbody>
+  <div class="row offset-1">
+    <div class="col-7">
+      <h5><strong>注文情報</strong></h5>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td>注文日</td>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <td>配送先</td><br>
+            <td>〒<%= @order.postal_code %><br>
+                <%= @order.address %><br>
+                <%= @order.name %>
+            </td>
+          </tr>
+          <tr>
+            <td>支払方法</td>
+            <td><%= @order.payment_method_i18n %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    </table>
+      <div class="col-4">
+        <h5><strong>請求情報</strong></h5>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>商品合計</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>配送料</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>ご請求額</th>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
   </div>
 </div>

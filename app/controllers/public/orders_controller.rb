@@ -1,7 +1,9 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
+
   def new
     @order = Order.new
+    @addresses = current_customer.addresses.all
   end
 
   def confirm
@@ -17,7 +19,6 @@ class Public::OrdersController < ApplicationController
        # [:address_option]=="1"を呼び出す
     elsif params[:order][:address_option] == "1"
       address = Address.find(params[:order][:customer_id])
-　　　　　　　#orderのmember_id(=カラム)でアドレス(帳)を選び、そのデータ送る
       @order.postal_code = address.postal_code
       @order.address = address.address
       @order.name = address.name
@@ -41,12 +42,12 @@ class Public::OrdersController < ApplicationController
     @order.save
 
     current_customer.cart_items.each do |cart_item| #カートの商品を1つずつ取り出しループ
-     order_detail = OrderDetail.new #初期化宣言
-     order_detail.item_id = cart_item.item_id #商品idを注文商品idに代入
-     order_detail.amount = cart_item.amount #商品の個数を注文商品の個数に代入
-     order_detail.price = (cart_item.item.price*1.08).floor #消費税込みに計算して代入
-     order_detail.order_id =  order.id #注文商品に注文idを紐付け
-     ordered_item.save #注文商品を保存
+     @order_detail = OrderDetail.new #初期化宣言
+     @order_detail.item_id = cart_item.item_id #商品idを注文商品idに代入
+     @order_detail.amount = cart_item.amount #商品の個数を注文商品の個数に代入
+     @order_detail.price = (cart_item.item.price*1.08).floor #消費税込みに計算して代入
+     @order_detail.order_id =  @order.id #注文商品に注文idを紐付け
+     @order_detail.save #注文商品を保存
     end #ループ終わり
     current_customer.cart_items.destroy_all #カートの中身を削除
       redirect_to orders_complete_path
@@ -66,6 +67,6 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:customer_id, :postal_code, :addresses, :name, :shipping_cost, :total_payment, :payment_method)
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method)
   end
 end
