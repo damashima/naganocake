@@ -8,29 +8,33 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>商品名</th>
-          <th>単価(税込)</th>
-          <th>数量</th>
-          <th>小計</th>
-          <th></th>
+          <td>商品名</td>
+          <td>単価(税込)</td>
+          <td>数量</td>
+          <td>小計</td>
+          <td></td>
         </tr>
       </thead>
-      <% total = 0 %>
+      <% @total = 0 %>
       <tbody>
-        <% @cart_items.each do |cart_item| %>
-        <% @total +=  cart_item.subtotal %>
-        <tr>
-          <td><%= cart_item.item.name %></td>
-          <td><%= cart_item.item.with_tax_price %></td>
-          <td><%= form_with model: cart_item, url: cart_item_path(cart_item), local: true, method: :patch do |f| %>
-                 <%= f.select :amount, *[1..10], id: "amount_cart"%>
-                 <%= f.submit "変更", class: "btn btn-success" %>
-               <% end %>
-          </td>
-          <td><%= cart_item.subtotal%></td>
-          <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger" %>
-          </td>
-        </tr>
+        <% if current_customer.cart_items.present? %>
+          <% @cart_items.each do |cart_item| %>
+          <% @total += cart_item.subtotal %>
+          <tr>
+            <th><%= attachment_image_tag(cart_item.item, :image, size: "60x50", fallback: "no_image.jpg") %>
+                <%= cart_item.item.name %>
+            </th>
+            <td><%= cart_item.item.with_tax_price %></td>
+            <td><%= form_with model: cart_item, url: cart_item_path(cart_item), local: true, method: :patch do |f| %>
+                   <%= f.select :amount, *[1..10], id: "amount_cart"%>
+                   <%= f.submit "変更", class: "btn btn-success" %>
+                 <% end %>
+            </td>
+            <td><%= cart_item.subtotal%></td>
+            <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger" %>
+            </td>
+          </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table><br>

@@ -29,5 +29,12 @@ Item.create!(
    name: "ショートケーキ",
    introduction: "いちごのケーキ",
    price: "300",
-   image: open("./app/assets/images/mizuho4141396IMG_7893_TP_V4.jpg")
+   image: open("./app/assets/images/sweets_shortcake.png")
+   )
+
+Item.create!(
+   name: "チョコケーキ",
+   introduction: "ベルギー産のチョコレートを使用したケーキ",
+   price: "400",
+   image: open("./app/assets/images/sweets_chocolate_cake_sachertorte.png")
    )

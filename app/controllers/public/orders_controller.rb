@@ -16,15 +16,15 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
 
-       # [:address_option]=="1"を呼び出す
+    # [:address_option]=="1"を呼び出す
     elsif params[:order][:address_option] == "1"
-      address = Address.find(params[:order][:customer_id])
+      address = Address.find(params[:order][:address_id])
       @order.postal_code = address.postal_code
       @order.address = address.address
       @order.name = address.name
 
-      　# 新規住所入力 [:address_option]=="2"としてデータをhtmlから受ける
-　　elsif params[:order][:address_option] = "2"
+    # 新規住所入力 [:address_option]=="2"としてデータをhtmlから受ける
+    elsif params[:order][:address_option] = "2"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
@@ -40,10 +40,10 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
-
-    current_customer.cart_items.each do |cart_item| #カートの商品を1つずつ取り出しループ
+    @cart_items = current_customer.cart_items.all
+    @cart_items.each do |cart_item| #カートの商品を1つずつ取り出しループ
      @order_detail = OrderDetail.new #初期化宣言
-     @order_detail.item_id = cart_item.item_id #商品idを注文商品idに代入
+     @order_detail.item_id = cart_item.item.id #商品idを注文商品idに代入
      @order_detail.amount = cart_item.amount #商品の個数を注文商品の個数に代入
      @order_detail.price = (cart_item.item.price*1.08).floor #消費税込みに計算して代入
      @order_detail.order_id =  @order.id #注文商品に注文idを紐付け

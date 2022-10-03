@@ -1,6 +1,6 @@
 <div class="container">
-  <h4>注文履歴詳細</h4>
-  <div class="row offset-1">
+  <h4>注文履歴詳細</h4><br>
+  <div class="row">
     <div class="col-7">
       <h5><strong>注文情報</strong></h5>
       <table class="table table-bordered">
@@ -24,25 +24,48 @@
       </table>
     </div>
 
-      <div class="col-4">
-        <h5><strong>請求情報</strong></h5>
-        <table class="table table-bordered">
-          <tbody>
-            <tr>
-              <td>商品合計</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>配送料</td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>ご請求額</th>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="col-4">
+      <h5><strong>請求情報</strong></h5>
+      <table class="table table-bordered">
+         <tbody>
+           <tr>
+            <td>商品合計</td>
+            <td><%= (@order.total_payment - @order.shipping_cost) %></td>
+          </tr>
+          <tr>
+            <td>配送料</td>
+            <td><%= @order.shipping_cost %></td>
+          </tr>
+          <tr>
+            <th>ご請求額</th>
+            <td><%= @order.total_payment %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
+  <div class="col-9">
+    <h5><strong>注文内容</strong></h5>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>商品</td>
+          <td>単価(税込)</td>
+          <td>個数</td>
+          <td>小計</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_details.each do |order_detail| %>
+        <tr>
+          <td><%= order_detail.item.name %></td>
+          <td><%= order_detail.item.with_tax_price %></td>
+          <td><%= order_detail.amount %></td>
+          <td><%= order_detail.subtotal %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

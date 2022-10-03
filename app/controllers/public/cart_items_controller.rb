@@ -15,10 +15,11 @@ before_action :authenticate_customer!
       cart_item.save
       redirect_to cart_items_path
 
-    elsif @cart_item.save
+    elsif @cart_item.save!
       @cart_items = current_customer.cart_items.all
       render 'index'
     else
+      @cart_items = CartItem.all
       render 'index'
     end
   end
@@ -44,6 +45,6 @@ before_action :authenticate_customer!
 
   private
   def cart_item_params
-    params.require(:cart_item).permit(:item_id, :amount, :price)
+    params.require(:cart_item).permit(:item_id, :customer_id, :amount, :price)
   end
 end
