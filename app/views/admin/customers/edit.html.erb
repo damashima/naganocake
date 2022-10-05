@@ -35,13 +35,15 @@
           </tr>
           <tr>
             <td>会員ステータス</td>
-            <td></td>
+            <td><%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効" %>
+                <%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会" %>
+            </td>
           </tr>
         </tbody>
       </table>
-
-      <%= f.submit '変更を保存', class: "btn btn-success btn-lg " %>
-
+      <div class="col text-center">
+        <%= f.submit '変更を保存', class: "btn btn-success btn-lg " %>
+      </div>
       <% end %>
     </div>
   </div>
