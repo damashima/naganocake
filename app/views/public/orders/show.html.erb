@@ -1,23 +1,23 @@
 <div class="container">
-  <h4>注文履歴詳細</h4><br>
+  <h4>注文履歴詳細</h4>
   <div class="row">
     <div class="col-7">
       <h5><strong>注文情報</strong></h5>
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <td>注文日</td>
+            <td class="table-active">注文日</td>
             <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
-            <td>配送先</td><br>
+            <td class="table-active">配送先</td><br>
             <td>〒<%= @order.postal_code %><br>
                 <%= @order.address %><br>
                 <%= @order.name %>
             </td>
           </tr>
           <tr>
-            <td>支払方法</td>
+            <td class="table-active">支払方法</td>
             <td><%= @order.payment_method_i18n %></td>
           </tr>
         </tbody>
@@ -29,16 +29,16 @@
       <table class="table table-bordered">
          <tbody>
            <tr>
-            <td>商品合計</td>
-            <td><%= (@order.total_payment - @order.shipping_cost) %></td>
+            <td class="table-active">商品合計</td>
+            <td><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %></td>
           </tr>
           <tr>
-            <td>配送料</td>
+            <td class="table-active">配送料</td>
             <td><%= @order.shipping_cost %></td>
           </tr>
           <tr>
-            <th>ご請求額</th>
-            <td><%= @order.total_payment %></td>
+            <th class="table-active">ご請求額</th>
+            <td><%= @order.total_payment.to_s(:delimited) %></td>
           </tr>
         </tbody>
       </table>
@@ -49,7 +49,7 @@
     <h5><strong>注文内容</strong></h5>
     <table class="table table-bordered">
       <thead>
-        <tr>
+        <tr class="table-active">
           <td>商品</td>
           <td>単価(税込)</td>
           <td>個数</td>
@@ -62,7 +62,7 @@
           <td><%= order_detail.item.name %></td>
           <td><%= order_detail.item.with_tax_price %></td>
           <td><%= order_detail.amount %></td>
-          <td><%= order_detail.subtotal %></td>
+          <td><%= order_detail.subtotal.to_s(:delimited) %></td>
         </tr>
         <% end %>
       </tbody>
