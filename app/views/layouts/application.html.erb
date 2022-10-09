@@ -12,57 +12,62 @@
 
   <header>
     <nav class="navbar navbar-expand-lg">
-      <div class="logo_area text-left">
-        <a class="navbar-brand" href="/"><%= image_tag 'logo.png', class: "logo" %></a>
-      </div>
+      <div class="container">
+        <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png') %></a>
 
       <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
           <li style="margin: 20px;">ようこそ、<%= current_customer.last_name %>さん！</li>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "マイページ", customers_my_page_path, class:"btn btn-outline-secondary" %>
           </li>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
           </li>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "カート", cart_items_path, class:"btn btn-outline-secondary" %>
           </li>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"btn btn-outline-secondary" %>
           </li>
 
         <% elsif admin_signed_in? %>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "商品一覧", admin_items_path, class:"btn btn-outline-secondary" %>
           </li>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "会員一覧", admin_customers_path, class:"btn btn-outline-secondary" %>
           </li>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "注文履歴一覧", admin_root_path, class:"btn btn-outline-secondary" %>
           </li>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-outline-secondary" %>
           </li>
         <% else %>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "About", about_path, class:"btn btn-outline-secondary" %>
           </li>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
           </li>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-outline-secondary" %>
           </li>
-          <li style="margin: 10px;">
+          <li style="margin: 15px;">
             <%= link_to "ログイン", new_customer_session_path, class:"btn btn-outline-secondary" %>
           </li>
         <% end %>
     </ul>
     </nav>
+    </div>
   </header>
   <body>
     <%= yield %>
+    <footer>
+      <div class="container">
+
+      </div>
+    </footer>
   </body>
 </html>
