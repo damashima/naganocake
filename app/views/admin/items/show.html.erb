@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center offset-2">
     <div class="col-3">
-
+      <p class="text-success"><%= flash[:notice] %></p>
       <h3>商品詳細</h3><br>
       <%= attachment_image_tag @item, :image, format: 'jpeg', size: "200x150" %>
     </div>
