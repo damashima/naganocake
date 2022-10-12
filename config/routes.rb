@@ -13,9 +13,9 @@ Rails.application.routes.draw do
 
   get 'customers/my_page' => 'public/customers#show'
   get 'customers/information/edit' => 'public/customers#edit'
-  patch 'customers/information/edit' => 'public/customers#update'
+  patch 'customers/information' => 'public/customers#update'
   get 'customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
-  patch 'customers/withdrawal' => 'public/customers#withdrawal', as: 'withdrawal'
+  patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
 
   scope module: 'public' do
     resources :cart_items, only: [:index, :update, :destroy, :create]

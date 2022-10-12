@@ -38,3 +38,10 @@ Item.create!(
    price: "400",
    image: open("./app/assets/images/sweets_chocolate_cake_sachertorte.png")
    )
+
+Item.create!(
+   name: "チーズケーキ",
+   introduction: "4種のチーズを使用した濃厚なケーキ",
+   price: "400",
+   image: open("./app/assets/images/sweets_cheesecake.png")
+   )
